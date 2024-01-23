@@ -121,7 +121,7 @@ func (b *Bridge) Sync(quiet bool) {
 	if b.config.Cleanup {
 		// Remove services if its corresponding container is not running
 		log.Println("Listing non-exited containers")
-		filters := map[string][]string{"status": {"created", "restarting", "running", "paused"}}
+		filters := map[string][]string{"status": {"created", "running", "paused"}}
 		nonExitedContainers, err := b.docker.ListContainers(dockerapi.ListContainersOptions{Filters: filters})
 		if err != nil {
 			log.Println("error listing nonExitedContainers, skipping sync", err)
